@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@font-face {
+    font-family: 'Opensans';
+    src: url(src/fonts/OpenSans-VariableFont_wdth\,wght.ttf);
+}
+
+
+@font-face {
+    font-family: 'Raleway';
+    src: url(src/fonts/Raleway-VariableFont_wght.ttf);
+}
+
+
+@layer base{
+    body{
+      @apply font-poppins text-rasin-black bg-seasalt
+    } 
+
+    h1{
+      @apply font-raleway
+    }
+}
