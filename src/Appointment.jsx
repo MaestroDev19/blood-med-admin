@@ -1,8 +1,8 @@
 import Navbar from "./components/Navbar";
-export default function Donor(){
+export default function Appointment(){
     return(
         <>
-        <Navbar name="BloodMED"/>
+         <Navbar name="BloodMED"/>
         </>
     )
 }
