@@ -4,7 +4,6 @@ export default function Button(props){
     return(
         <>
           <Link to={props.to} className= {props.className}>{props.name}</Link>
-         
         </>
     )
 }

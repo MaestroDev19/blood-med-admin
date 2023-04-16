@@ -10,8 +10,8 @@ export default function Dashboard(){
          <Navbar name="BloodMED"/>
          <main className="mt-10 w-full bg-seasalt px-5 lg:px-10 h-screen">
             <div className="flex flex-col space-y-1.5 w-full">
-              <Link className="text-base font-light font-poppins">Overview</Link>
-              <h1 className="font-poppins text-3xl font-normal">Welcome<span className="font-medium"> Charles</span></h1>
+              <h1 className="font-poppins text-base font-light ">Welcome<span className="font-medium"> Charles</span></h1>
+              <Link className="text-3xl font-normal font-poppins">Overview</Link>
               <p className="font-light text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
             </div>
             <div className="grid grid-cols-4 lg:grid-cols-12  gap-5 mt-10 justify-center items ">

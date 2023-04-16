@@ -8,11 +8,12 @@ export default function Navbar(props){
             <div className="space-x-10 flex justify-center items-center">
               <Link to={props.to} className=" text-rasin-black text-xl lg:text-2xl  font-poppins"><span className="text-munshell">Blood</span>MED</Link>
               <div className="space-x-5 text-base  font-light hidden lg:flex">
-                <Navlink to="/home" name="Overview" className=" active:underline active:underline-offset-8 active:decoration-munshell"/>
-                <Navlink to="/home" name="Donors" className=" hover:underline hover:underline-offset-8 hover:decoration-munshell"/>
-                <Navlink to="/home" name="Donations" className=" hover:underline hover:underline-offset-8 hover:decoration-munshell"/>
-                <Navlink to="/home" name="Appointments" className=" hover:underline hover:underline-offset-8 hover:decoration-munshell"/>
-                <Navlink to="/home" name="Blood inventory" className=" hover:underline hover:underline-offset-8 hover:decoration-munshell"/>
+                <Navlink to="/overview" name="Overview" className=" active:text-munshell "/>
+                <Navlink to="/donor" name="Donors" className=" hover:underline hover:underline-offset-8 hover:decoration-munshell"/>
+                <Navlink to="/donation" name="Donations" className=" hover:underline hover:underline-offset-8 hover:decoration-munshell"/>
+                <Navlink to="/appointment" name="Appointments" className=" hover:underline hover:underline-offset-8 hover:decoration-munshell"/>
+                <Navlink to="/inventory" name="Blood inventory" className=" hover:underline hover:underline-offset-8 hover:decoration-munshell"/>
+                
               </div>
             </div>
             <div className="space-x-5 text-base font-light  hidden lg:flex">

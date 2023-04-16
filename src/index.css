@@ -21,7 +21,5 @@
       @apply font-poppins text-rasin-black bg-seasalt
     } 
 
-    h1{
-      @apply font-raleway
-    }
+    
 }
