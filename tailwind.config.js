@@ -10,17 +10,15 @@ export default {
     extend: {
       colors:{
         "munshell":"#DC2E45",
-        "seasalt":"#F4F7F5",
+        "seasalt":"#f6f6f6",
         "rasin-black":"#23231A",
-        "berkeley-blue":"#12355B",
         "salmon-pink":"#F39A9D",
+        "folly":"#E22837",
         "timberwolf":"#CED0CE",
         "platinum":"#E7EEEA"
       },
       fontFamily:{
-        opensans:['Opensans','sans-serif'],
-        raleway:['Raleway','sans-serif'],
-        poppins:['Poppins','sans-serif']
+        outfit:['Outfit','sans-serif']
       }
     },
   },

@@ -1,39 +1,71 @@
-import {auth} from "../config/FirebaseConfig"
-import {createUserWithEmailAndPassword, signOut} from 'firebase/auth'
+
+import { auth } from "./components/Firebase"
+import {signInWithEmailAndPassword} from "firebase/auth"
+import { Link, useNavigate } from 'react-router-dom'
 import Button from "./components/Button"
-import { useState } from "react"
+import { useFormik } from 'formik'
 export default function Login(){
-    const [email,setEmail] = useState('')
-    const [password,setPassword] = useState('')
-    const logIn = async()=>{
-    try{await createUserWithEmailAndPassword(Login, email,password)}
-    catch(err){console.error(err)}
-   }
-    return(
-        <>
+  const navigate = useNavigate()
+  const onSubmit=async(values)=>{
+      
+      console.log(values)
+      try{
+      const result = await signInWithEmailAndPassword(auth, values.email, values.password);
+      navigate('/overview')
+      const user = result.user ;
+      console.log(user.uid);
+     }catch(errors){
+      let errorCode = errors.code
+      if (errorCode === 'auth/wrong-password') {
+      
+      const errorPassword = document.querySelector('#error-password')
+      errorPassword.innerHTML = "Wrong password"
+    }else if(errorCode === 'auth/user-not-found'){
+      document.querySelector('#error-email').innerHTML ="This account doesn't exist"
+    }
+      console.error("Encountered some errors!",errors)
+     }
+
+  }
+  const formik = useFormik({
+    initialValues:{
+      email:"",
+      password:""
+    },
+    onSubmit
+    
+  }) 
+  return(
+    <>
         <header className=" mx-auto max-w-screen  py-[25px] px-5 md:px-10 lg:px-[50px] ">
           <nav>
-            <h1 className="font-medium  text-xl"><span class="text-munshell">Blood</span>MED</h1>
+            <h1 className="font-medium  text-xl"><span class="text-folly">Blood</span>MED</h1>
           </nav>
         </header>
         <main className=" mt-[60px] container mx-auto  px-5 md:px-10 lg:px-[50px] w-screen">
-          <form className="md:flex md:justify-center md:items-center">
+          <form className="md:flex md:justify-center md:items-center " onSubmit={formik.handleSubmit}>
             <div className="flex flex-col space-y-10">
                <div className="space-y-2.5">
-                  <h1 className="font-medium text-3xl md:4xl">Welcome back</h1>
+                  <h1 className='text-3xl'>Welcome back!<br/>Login </h1>
                   <p className="font-light text-sm">Enter your login details to login</p>
                </div>
                <div className="space-y-5 md:w-[380px] w-full">
-                <label htmlFor="UserEmail" className="relative block overflow-hidden border border-rasin-black px-3 pt-3 focus-within:border-munshell focus-within:ring-1 focus-within:ring-munshell">
-                  <input type="email" id="UserEmail" onChange={(e)=>setEmail(e.target.value)} placeholder="Email" className="peer h-8 w-full  border-none bg-transparent p-0 placeholder-transparent   focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"/>
-                  <span className="absolute left-3 top-3 -translate-y-1/2 text-sm text-rasin-black transition-all peer-placeholder-shown:top-1/2 peer-placeholder- shown:text-sm peer-focus:top-3 peer-focus:text-xs">Your email</span>
+                <div className='space-y-1'>
+                <label htmlFor="email" className="relative block overflow-hidden  border-rasin-black px-3 pt-3 focus-within:border-rasin-black  focus-within:ring-rasin-black">
+                  <input type="email" id="email"placeholder="Email" className="peer h-8 w-full border-none bg-transparent text-base p-0 placeholder-transparent font-light focus:border-transparent focus:outline-none focus:ring-0 " value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
+                  <span className="absolute left-3 top-3 -translate-y-1/2 text-sm text-rasin-black transition-all peer-placeholder-shown:top-1/2 peer-placeholder- shown:text-sm peer-focus:top-3 peer-focus:text-xs">Email</span>
                 </label>
-                <label htmlFor="UserPassword" className="relative block overflow-hidden border border-rasin-black px-3 pt-3 focus-within:border-munshell focus-within:ring-1 focus-within:ring-munshell">
-                  <input type="password" id="UserPassword"placeholder="pass" onChange={(e)=>setPassword(e.target.value)} className="peer h-8 w-full  border-none bg-transparent p-0 placeholder-transparent   focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"/>
+                <p className="text-munshell text-xs" id="error-email"></p>
+              </div>
+              <div className='space-y-1'>
+                <label htmlFor="password" className="relative block overflow-hidden  border-rasin-black px-3 pt-3 focus-within:border-rasin-black  focus-within:ring-rasin-black">
+                  <input type="password" id="password"placeholder="Password" className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent font-light focus:border-transparent focus:outline-none focus:ring-0 text-base" value={formik.values.password} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
                   <span className="absolute left-3 top-3 -translate-y-1/2 text-sm text-rasin-black transition-all peer-placeholder-shown:top-1/2 peer-placeholder- shown:text-sm peer-focus:top-3 peer-focus:text-xs">Password</span>
                 </label>
+                <p className="text-munshell text-xs" id="error-password"></p>
+              </div>
                </div>
-               <button className="p-3.5  bg-munshell text-seasalt text-center font-medium text-base" onClick={logIn} >Login</button>
+               <button  className="bg-folly"type="submit"disabled={formik.isSubmitting}>Login</button>
             </div>
           </form>
         </main>

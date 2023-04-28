@@ -3,10 +3,10 @@ import { Link } from "react-router-dom"
 export default function Navbar(props){
   return(
     <>
-    <header className="w-full bg-seasalt py-6 px-5 lg:px-10 border-b">
+    <header className="w-full bg-seasalt py-6 px-5 lg:px-10 border-b-2 border-rasin-black">
       <nav className="flex justify-between items-center">
       <div className="flex justify-center items-center space-x-10">
-        <Link to={props.to} className="text-xl lg:text-2xl font-poppins text-rasin-black">
+        <Link to={props.to} className="text-xl lg:text-2xl  text-rasin-black">
           <span className="text-munshell">Blood</span>MED
         </Link>
         <div className="hidden lg:flex space-x-5 font-light text-base">
