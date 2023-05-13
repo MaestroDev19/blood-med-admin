@@ -2,8 +2,27 @@ import { auth } from "./components/Firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
+import { useEffect, useState } from "react";
+import {getDoc,doc} from 'firebase/firestore'
+import { db } from "./components/Firebase";
 export default function Login() {
+  const [role,setRole] = useState('')
   const navigate = useNavigate();
+  useEffect(() => {
+    const donor = async () => {
+      try {
+        const data = await getDoc(doc(db, "users", auth.currentUser.uid));
+        // console.log(data.data())
+        
+        setRole(data.data().role);
+        console.log(data.data().role)
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    donor();
+  }, []);
+  
   const onSubmit = async (values) => {
     try {
       const result = await signInWithEmailAndPassword(

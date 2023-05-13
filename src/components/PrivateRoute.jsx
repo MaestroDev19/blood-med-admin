@@ -2,38 +2,46 @@ import { Navigate, Outlet } from "react-router-dom";
 import { auth } from "./Firebase";
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
-import { signOut } from "firebase/auth";
+import { getDoc, doc } from "firebase/firestore";
+import { db } from "./Firebase";
 
 const PrivateRoute = () => {
-  ;
-  const [isAdmin,setIsAdmin] = useState(null)
+  const [role, setRole] = useState("");
+  const [isAdmin, setIsAdmin] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        
-        user.getIdTokenResult().then((idTokenResult) => {
-        console.log(idTokenResult)
-        if (idTokenResult.claims.admin) {
-          setIsAdmin(user)
-          console.log(user)
-        } else {
-          setIsAdmin(null)
-          console.log(2)
-        }})
+    const checkAdminStatus = async () => {
+      try {
+        const docRef = doc(db, "users", auth.currentUser.uid);
+        const docSnap = await getDoc(docRef);
+        const data = docSnap.data();
+        if (data) {
+          setRole(data.role);
+          setIsAdmin(data.role === "admin");
+        }
+      } catch (error) {
+        console.log(error);
       }
       setLoading(false);
+    };
+
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        checkAdminStatus();
+      } else {
+        setLoading(false);
+      }
     });
 
     return () => unsubscribe();
   }, []);
 
   if (loading) {
-    return <div><Loading /></div>;
+    return <Loading />;
   }
 
-  return isAdmin ? <Outlet /> : <Navigate to= "/" />;
+  return isAdmin ? <Outlet /> : <Navigate to="/" />;
 };
 
 export default PrivateRoute;
