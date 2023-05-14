@@ -17,7 +17,7 @@ export default function Donor() {
   return (
     <>
       <Nav />
-      <main className="px-10 ">
+      <main className="px-5 md:px-10">
         <div className="space-y-4 my-[60px]">
           <h1 className="text-4xl">
             <span className="font-normal">Donor</span>{" "}

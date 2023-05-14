@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
 import { auth } from "./Firebase";
 import { signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 export default function Nav() {
+  const navigate = useNavigate()
   const logout = async()=>{
     await signOut(auth);
     navigate("/");
   }
   return (
     <>
-      <header className="container mx-auto z-10 sticky bg-white-s top-0 py-[15px] px-10 border-b-2 border-rasin-black text-sm md:text-base">
+      <header className="container mx-auto z-10 sticky bg-white-s top-0 py-[15px] px-5 md:px-10 border-b-2 border-rasin-black text-sm md:text-base">
         <nav className="flex justify-between items-center">
           <h1 className="font-medium text-lg">
             <span className="text-folly">Blood</span>MED
