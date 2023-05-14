@@ -11,7 +11,7 @@ export default {
       colors:{
         "munshell":"#DC2E45",
         "seasalt":"#f6f6f6",
-        "rasin-black":"#333333",
+        "rasin-black":"#28282A",
         "salmon-pink":"#F39A9D",
         "folly":"#E22837",
         "timberwolf":"#CED0CE",
@@ -19,7 +19,8 @@ export default {
       },
       fontFamily:{
         outfit:['Outfit','sans-serif']
-      }
+      },
+      
     },
   },
   plugins: [

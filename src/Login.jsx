@@ -4,10 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 
 export default function Login() {
-  co
   const navigate = useNavigate();
-  
-  
   const onSubmit = async (values) => {
     try {
       const result = await signInWithEmailAndPassword(
@@ -15,7 +12,7 @@ export default function Login() {
         values.email,
         values.password
       );
-      navigate("/overview");
+      navigate("/home");
       const user = result.user;
       console.log(user.uid);
     } catch (errors) {
