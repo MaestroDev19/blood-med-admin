@@ -22,7 +22,7 @@ export default function Nav() {
             <span className="text-folly">Blood</span>MED
           </h1>
           <div className="space-x-5 text-rasin-black text-[15px] hidden lg:flex items-center tracking-">
-            <Link className="hover:text-rasin-black hover:underline hover:underline-offset-[18px] hover:decoration-[1.5px]">
+            <Link to='/home' className="hover:text-rasin-black hover:underline hover:underline-offset-[18px] hover:decoration-[1.5px]">
               Home
             </Link> 
             <Link>Blog</Link>
