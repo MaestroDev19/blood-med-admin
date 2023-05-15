@@ -18,7 +18,8 @@ export default {
         "platinum":"#F5F5F5"
       },
       fontFamily:{
-        outfit:['Outfit','sans-serif']
+        outfit:['Outfit','sans-serif'],
+        hind:['Hind','sans-serif']
       },
       
     },

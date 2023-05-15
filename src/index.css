@@ -6,7 +6,7 @@
 
 @layer base{
      body{
-      @apply  text-rasin-black bg-platinum font-outfit
+      @apply  text-rasin-black bg-platinum font-hind tracking-wider
     } 
 
     h1{
