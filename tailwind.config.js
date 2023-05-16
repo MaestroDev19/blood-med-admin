@@ -19,7 +19,9 @@ export default {
       },
       fontFamily:{
         outfit:['Outfit','sans-serif'],
-        hind:['Hind','sans-serif']
+        hind:['Hind','sans-serif'],
+        rubik:['Rubik','sans-serif']
+
       },
       
     },

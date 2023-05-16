@@ -5,6 +5,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Donor from "./Donor";
 import Profile from "./Profile";
 import Blog from "./Blog";
+import Inventory from "./Inventory";
 
 export default function App() {
   return (
@@ -22,6 +23,9 @@ export default function App() {
         </Route>
         <Route path="/profile" element={<PrivateRoute />}>
           <Route index element={<Profile />} />
+        </Route>
+        <Route path="/inventory" element={<PrivateRoute />}>
+          <Route index element={<Inventory />} />
         </Route>
       </Routes>
     </BrowserRouter>

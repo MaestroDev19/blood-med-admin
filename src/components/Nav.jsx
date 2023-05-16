@@ -16,7 +16,7 @@ export default function Nav() {
   };
   return (
     <>
-      <header className="container mx-auto z-10 sticky bg-white-s top-0 py-[15px] px-5 md:px-10 border-b-2 border-rasin-black text-sm md:text-base">
+      <header className="container mx-auto z-10 sticky bg-white-s top-0 py-[15px] px-5 md:px-10 lg:px-[80px] border-b-2 border-rasin-black text-sm md:text-base bg-seasalt">
         <nav className="flex justify-between items-center">
           <h1 className="font-medium text-lg">
             <span className="text-folly">Blood</span>MED
@@ -25,11 +25,9 @@ export default function Nav() {
             <Link to='/home' className="hover:text-rasin-black hover:underline hover:underline-offset-[18px] hover:decoration-[1.5px]">
               Home
             </Link> 
-            <Link>Blog</Link>
-            <Link to="/donor">Donors</Link>
-            <Link>Donations</Link>
-            <Link>Appointments</Link>
-            <Link>Inventory</Link>
+            <Link to="/donor">Analytics</Link>
+            <Link to="/blog">Post</Link>
+            
           </div>
           <div className="hidden items-center space-x-2 lg:flex">
             <button
@@ -59,17 +57,10 @@ export default function Nav() {
         </nav>
         <nav className=" hidden" id="mobile">
           <div className="flex lg:hidden flex-col space-y-5 mt-5">
-            <Link className="hover:text-rasin-black hover:underline hover:underline-offset-[18px] hover:decoration-[1.5px]">
+            <Link>
               Home
             </Link>
-            <Link className="hover:text-rasin-black hover:underline hover:underline-offset-[18px] hover:decoration-[1.5px]">
-              Appointment
-            </Link>
-            <Link className="hover:text-rasin-black hover:underline hover:underline-offset-[18px] hover:decoration-[1.5px]">
-              Donations
-            </Link>
-            <Link to="/donor">Donor</Link>
-            <Link>Inventory</Link>
+            <Link to="/donor">Analytics</Link>
             <Link>Blog</Link>
           </div>
         </nav>
