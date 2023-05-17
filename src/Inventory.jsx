@@ -1,38 +1,39 @@
-import Nav from "./components/Nav"
-export default function Inventory(){
-    return(
-        <>
-                <Nav />
+import Nav from "./components/Nav";
+import { Link } from "react-router-dom";
+export default function Inventory() {
+  return (
+    <>
+      <Nav />
       <main className="px-5 md:px-10 lg:px-[80px]">
         <h1 className="mt-[50px] text-4xl">Analytics</h1>
         <nav className="flex flex-col md:space-x-5 md:flex-row border-b-2 border-rasin-black md:border-transparent justify-center md:justify-start mt-[20px]   text-sm font-medium">
-          <a
-            href=""
+          <Link
+            to="/donor"
             className="-mb-px hover:border-b-2 hover:border-transparent py-4 hover:text-folly "
           >
             Donors
-          </a>
+          </Link>
 
-          <a
-            href=""
+          <Link
+            to=""
             className="-mb-px hover:border-b-2 hover:border-transparent py-4 hover:text-folly "
           >
             Donations
-          </a>
+          </Link>
 
-          <a
-            href=""
+          <Link
+            to=""
             className="-mb-px hover:border-b-2 hover:border-transparent py-4 hover:text-folly "
           >
             Appointments
-          </a>
+          </Link>
 
-          <a
-            href=""
+          <Link
+            to="/inventory"
             className="-mx-px font-medium py-4 md:border-b-2 md:border-current text-folly "
           >
             Inventory
-          </a>
+          </Link>
         </nav>
         <div className="space-y-2.5 my-[40px]">
           <h1 className="text-xl">
@@ -93,8 +94,8 @@ export default function Inventory(){
               ))}
             </tbody>
           </table>
-          </div>
-        </main>
-        </>
-    )
+        </div>
+      </main>
+    </>
+  );
 }

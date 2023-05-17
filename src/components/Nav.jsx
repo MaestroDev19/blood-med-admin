@@ -16,7 +16,7 @@ export default function Nav() {
   };
   return (
     <>
-      <header className="container mx-auto z-10 sticky bg-white-s top-0 py-[15px] px-5 md:px-10 lg:px-[80px] border-b-2 border-rasin-black text-sm md:text-base bg-seasalt">
+      <header className="z-10 sticky bg-white-s top-0 py-[15px] px-5 md:px-10 lg:px-[80px] border-b-2 border-rasin-black text-sm md:text-base bg-seasalt w-full">
         <nav className="flex justify-between items-center">
           <h1 className="font-medium text-lg">
             <span className="text-folly">Blood</span>MED

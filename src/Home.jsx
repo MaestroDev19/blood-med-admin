@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {useState, useEffect} from 'react';
 import Nav from "./components/Nav";
 import { getDoc, doc } from "firebase/firestore";
