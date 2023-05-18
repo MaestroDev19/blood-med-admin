@@ -1,18 +1,18 @@
 import Nav from "./components/Nav";
 import { useEffect, useState } from "react";
-import { collection, query, getDocs } from "firebase/firestore";
+import { collection, query, onSnapshot } from "firebase/firestore";
 import { db } from "./components/Firebase";
 import { Link } from "react-router-dom";
 export default function Donor() {
   const [donors, setDonors] = useState([]);
   useEffect(() => {
     const getDonors = async () => {
-      const q = await getDocs(query(collection(db, "donors")));
-      const donor = q.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setDonors(donor);
+      const q = query(collection(db, "donors"));
+      const unsub = onSnapshot(q, (querySnapshot) => {
+        const donor = querySnapshot.docs.map((doc) => doc.data());
+        setDonors(donor);
+      });
+      
     };
     getDonors();
   }, []);

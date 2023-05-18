@@ -61,7 +61,7 @@ export default function Nav() {
               Home
             </Link>
             <Link to="/donor">Analytics</Link>
-            <Link>Blog</Link>
+            <Link to='/blog'>Blog</Link>
           </div>
         </nav>
       </header>

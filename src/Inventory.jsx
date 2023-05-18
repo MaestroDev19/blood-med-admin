@@ -1,6 +1,22 @@
 import Nav from "./components/Nav";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { collection, query, onSnapshot } from "firebase/firestore";
+import { db } from "./components/Firebase";
 export default function Inventory() {
+  const [inventory,setInventory] = useState([])
+   useEffect(() => {
+    const getIventory =  () => {
+      const q = query(collection(db, "inventory"));
+      const unsub = onSnapshot(q, (querySnapshot) => {
+        const box = querySnapshot.docs.map((doc) => doc.data());
+        setInventory(box);
+      });
+      
+    };
+    getIventory();
+  }, []);
+  console.log(inventory)
   return (
     <>
       <Nav />
@@ -49,46 +65,40 @@ export default function Inventory() {
             <thead className="text-left">
               <tr className="">
                 <th className="whitespace-nowrap px-4 py-4 font-medium text-rasin-black">
-                  First name
+                  Donor id
                 </th>
                 <th className="whitespace-nowrap px-4 py-4 font-medium text-rasin-black">
-                  Last name
-                </th>
-                <th className="whitespace-nowrap px-4 py-4 font-medium text-rasin-black">
-                  Date of birth
-                </th>
-                <th className="whitespace-nowrap px-4 py-4 font-medium text-rasin-black">
-                  Gender
+                  Blood component
                 </th>
                 <th className="whitespace-nowrap px-4 py-4 font-medium text-rasin-black">
                   Blood group
                 </th>
                 <th className="whitespace-nowrap px-4 py-4 font-medium text-rasin-black">
-                  Phone number
+                  Quantity
+                </th>
+                <th className="whitespace-nowrap px-4 py-4 font-medium text-rasin-black">
+                  Expiration date
                 </th>
               </tr>
             </thead>
 
             <tbody className="divide-y-2 divide-rasin-black">
-              {donors.map((donor) => (
-                <tr key={donor.id}>
+              {inventory.map((box) => (
+                <tr key={box.id}>
                   <td className="whitespace-nowrap px-4 py-4 font-medium text-gray-900">
-                    {donor.firstname}
+                    {box.donorid}
                   </td>
                   <td className="whitespace-nowrap px-4 py-4 text-rasin-black">
-                    {donor.lastname}
+                    {box.bloodcomponent}
                   </td>
                   <td className="whitespace-nowrap px-4 py-4 text-rasin-black">
-                    {donor.age}
+                    {box.bloodgroup}
                   </td>
                   <td className="whitespace-nowrap px-4 py-4 text-rasin-black">
-                    {donor.gender}
+                    {box.quantity}
                   </td>
                   <td className="whitespace-nowrap px-4 py-4 text-rasin-black">
-                    {donor.bloodGroup}
-                  </td>
-                  <td className="whitespace-nowrap px-4 py-4 text-rasin-black">
-                    {donor.phonenumber}
+                    {box.expdate}
                   </td>
                 </tr>
               ))}
