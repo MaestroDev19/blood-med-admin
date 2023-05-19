@@ -1,10 +1,29 @@
 import Nav from "./components/Nav";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-import { collection, addDoc, query, onSnapshot } from "firebase/firestore";
+import { useState, useEffect } from "react";
+import {
+  collection,
+  addDoc,
+  query,
+  onSnapshot,
+  orderBy,
+} from "firebase/firestore";
 import { db } from "./components/Firebase";
 export default function Event() {
   const navigate = useNavigate();
+  const [latestEvent, setLatestEvent] = useState([]);
+  useEffect(() => {
+    const getLatestEvent = () => {
+      const q = query(collection(db, "events"), orderBy("date", "desc"));
+
+      const unsub = onSnapshot(q, (querySnapshot) => {
+        const events = querySnapshot.docs.map((doc) => doc.data());
+        setLatestEvent(events.slice(0, 2));
+      });
+    };
+    getLatestEvent();
+  }, []);
   const onSubmit = async (values) => {
     await addDoc(collection(db, "events"), {
       name: values.title,
@@ -14,8 +33,7 @@ export default function Event() {
     });
     navigate("/home");
   };
-  
-  
+
   const formik = useFormik({
     initialValues: {
       title: "",
@@ -46,18 +64,21 @@ export default function Event() {
         </nav>
         <div className="space-y-2.5 my-[40px]">
           <h1 className="text-xl">
-            <span className="font-normal">Blog</span>{" "}
+            <span className="font-normal">Event</span>{" "}
           </h1>
           <p className="text-base lg:text-lg font-light">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis
             quasi quas alias et voluptatum, veritatis porro perferendis,
           </p>
         </div>
-        <div className="mt-[40px] grid grid-cols-6  gap-x-4">
-          <form className="col-span-6 md:col-span-4" onSubmit={formik.handleSubmit}>
+        <div className="mt-[40px] grid grid-cols-6 space-y-10 md:space-y-0 gap-x-4">
+          <form
+            className="col-span-6 md:col-span-3"
+            onSubmit={formik.handleSubmit}
+          >
             <div className="flex flex-col space-y-10">
               <div className="space-y-5 w-full">
-                <h1>Create event</h1>
+                <h1 className="font-medium">Create event</h1>
                 <div className="space-y-1">
                   <label
                     htmlFor="title"
@@ -138,10 +159,22 @@ export default function Event() {
               </div>
             </div>
           </form>
-          <div className="col-span-6 md:col-span-2">
-            <div>
-              
-              
+          <div className="col-span-6 md:col-span-3">
+            <div className="space-y-5">
+              <h1 className="text-base font-medium">Events</h1>
+              {latestEvent.map((event) => (
+                <div
+                  className="space-y-2.5 border-2 border-rasin-black px-5 py-5 "
+                  key={event.id}
+                >
+                  <p className="text-sm font-medium border-2 border-rasin-black p-1 bg-folly w-fit">
+                    {event.type}
+                  </p>
+                  <h1 className="text-base font-medium ">{event.name}</h1>
+                  <p className="text-sm ">{event.desc}</p>
+                  <p className="text-sm ">{event.date}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>

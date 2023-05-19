@@ -30,12 +30,6 @@ export default function Nav() {
             
           </div>
           <div className="hidden items-center space-x-2 lg:flex">
-            <button
-              className="border-2 bg-seasalt border-rasin-black py-1.5 px-2.5 flex items-center text-rasin-black hover:bg-rasin-black hover:text-seasalt"
-              onClick={logout}
-            >
-              <i className="ri-notification-line"></i>
-            </button>
             <button className="border-2 bg-seasalt border-rasin-black py-1.5 px-2.5 flex items-center" onClick={profile}>
               <i className="ri-user-line text-rasin-black"></i>
             </button>
@@ -61,6 +55,8 @@ export default function Nav() {
               Home
             </Link>
             <Link to="/donor">Analytics</Link>
+            <Link to='/blog'>Blog</Link>
+            <Link to='/blog'>Profile</Link>
             <Link to='/blog'>Blog</Link>
           </div>
         </nav>

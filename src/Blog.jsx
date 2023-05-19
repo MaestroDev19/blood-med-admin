@@ -1,7 +1,7 @@
 import Nav from "./components/Nav";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-import { collection, addDoc, query, onSnapshot } from "firebase/firestore";
+import { collection, addDoc, query, onSnapshot,orderBy } from "firebase/firestore";
 import {useState,useEffect} from "react"
 import { db } from "./components/Firebase";
 export default function Blog() {
@@ -17,16 +17,14 @@ export default function Blog() {
     navigate("/home");
   };
   useEffect(()=>{
-  const getBlog = ()=>{
-    const q = query(collection(db, "blog"));
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-    const blog = [];
-    querySnapshot.forEach((doc) => {
-      blog.push(doc.data());
-    });
-     setFeeds(blog[0])
-    });
-  };
+  const getBlog = () => {
+      const q = query(collection(db, "blog"), orderBy("date", "desc"));
+
+      const unsub = onSnapshot(q, (querySnapshot) => {
+        const feeds = querySnapshot.docs.map((doc) => doc.data());
+        setFeeds(feeds.slice(0,2));
+      });
+    };
   getBlog()
 },[]);
   
@@ -67,11 +65,11 @@ export default function Blog() {
             quasi quas alias et voluptatum, veritatis porro perferendis,
           </p>
         </div>
-        <div className="mt-[40px] grid grid-cols-6  gap-x-4">
-          <form className="col-span-6 md:col-span-4" onSubmit={formik.handleSubmit}>
+        <div className="mt-[40px] grid grid-cols-6  gap-x-4 space-y-10 md:space-y-0">
+          <form className="col-span-6 md:col-span-3" onSubmit={formik.handleSubmit}>
             <div className="flex flex-col space-y-10">
               <div className="space-y-5 w-full">
-                <h1>Create article</h1>
+                <h1 className="font-medium">Create article</h1>
                 <div className="space-y-1">
                   <label
                     htmlFor="title"
@@ -152,11 +150,19 @@ export default function Blog() {
               </div>
             </div>
           </form>
-          <div className="col-span-6 md:col-span-2">
-            <div>
-              
-              
-            </div>
+          <div className="col-span-6 md:col-span-3 space-y-5">
+            <h1 className="font-medium">Latest article</h1>
+            {feeds.map((news) => (
+              <div
+                className="space-y-2.5 border-2 border-rasin-black px-5 py-5"
+                key={news.id}
+              >
+                <p className="text-sm font-medium">{news.date}</p>
+                <h1 className="text-base font-medium ">{news.heading}</h1>
+                <p className="text-sm ">{news.body}</p>
+                <p className="text-sm font-medium">{news.author}</p>
+              </div>
+            ))}
           </div>
         </div>
       </main>

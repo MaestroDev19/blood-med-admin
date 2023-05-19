@@ -3,25 +3,27 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { collection, query, onSnapshot } from "firebase/firestore";
 import { db } from "./components/Firebase";
+import TestModal from "./components/TestModal";
 export default function Inventory() {
-  const [inventory,setInventory] = useState([])
-   useEffect(() => {
-    const getIventory =  () => {
+  const [inventory, setInventory] = useState([]);
+  useEffect(() => {
+    const getIventory = () => {
       const q = query(collection(db, "inventory"));
       const unsub = onSnapshot(q, (querySnapshot) => {
         const box = querySnapshot.docs.map((doc) => doc.data());
         setInventory(box);
       });
-      
     };
     getIventory();
   }, []);
-  console.log(inventory)
+  console.log(inventory);
   return (
     <>
       <Nav />
       <main className="px-5 md:px-10 lg:px-[80px]">
-        <h1 className="mt-[50px] text-4xl">Analytics</h1>
+        <h1 className="mt-[50px] text-2xl md:text-3xl lg:text-4xl ">
+          Analytics
+        </h1>
         <nav className="flex flex-col md:space-x-5 md:flex-row border-b-2 border-rasin-black md:border-transparent justify-center md:justify-start mt-[20px]   text-sm font-medium">
           <Link
             to="/donor"
@@ -51,14 +53,18 @@ export default function Inventory() {
             Inventory
           </Link>
         </nav>
-        <div className="space-y-2.5 my-[40px]">
-          <h1 className="text-xl">
-            <span className="font-normal">Inventory</span>{" "}
-          </h1>
-          <p className="text-base lg:text-lg font-light">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis
-            quasi quas alias et voluptatum, veritatis porro perferendis,
-          </p>
+        <div className="space-y-2.5 my-[40px] flex justify-between">
+          <div>
+            <h1 className="text-xl">
+              <span className="font-normal">Inventory</span>{" "}
+            </h1>
+            <p className="text-base lg:text-lg font-light">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Blanditiis quasi quas alias et voluptatum, veritatis porro
+              perferendis,
+            </p>
+          </div>
+          <TestModal/>
         </div>
         <div className="overflow-x-auto  border-2 border-rasin-black">
           <table className="min-w-full divide-y-2 divide-rasin-black text-sm ">
