@@ -23,31 +23,24 @@ export default function Donor() {
         <h1 className="mt-[50px] text-4xl">Analytics</h1>
         <nav className="flex flex-col md:space-x-5 md:flex-row border-b-2 border-rasin-black md:border-transparent justify-center md:justify-start mt-[20px]   text-sm font-medium">
           <Link
-            href=""
+            to="/donor"
             className="-mx-px font-medium py-4 md:border-b-2 md:border-current text-folly"
           >
             Donors
           </Link>
 
           <Link
-            href=""
+            to=""
             className="-mb-px hover:border-b-2 hover:border-transparent py-4 hover:text-folly "
           >
             Donations
           </Link>
 
           <Link
-            href=""
+            to="/appointment"
             className="-mb-px hover:border-b-2 hover:border-transparent py-4 hover:text-folly "
           >
             Appointments
-          </Link>
-
-          <Link
-            to="/inventory"
-            className="hover:border-b-2 hover:border-transparent py-4 hover:text-folly "
-          >
-            Inventory
           </Link>
         </nav>
         <div className="space-y-2.5 my-[40px]">

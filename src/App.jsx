@@ -6,7 +6,8 @@ import Donor from "./Donor";
 import Profile from "./Profile";
 import Blog from "./Blog";
 import Event from "./Event";
-import Inventory from "./Inventory";
+import Appointments from './Appointments'
+
 
 export default function App() {
   return (
@@ -28,8 +29,8 @@ export default function App() {
         <Route path="/profile" element={<PrivateRoute />}>
           <Route index element={<Profile />} />
         </Route>
-        <Route path="/inventory" element={<PrivateRoute />}>
-          <Route index element={<Inventory />} />
+        <Route path="/appointment" element={<PrivateRoute />}>
+          <Route index element={<Appointments />} />
         </Route>
       </Routes>
     </BrowserRouter>
