@@ -20,7 +20,7 @@ export default function Donor() {
     <>
       <Nav />
       <main className="px-5 md:px-10 lg:px-[80px]">
-        <h1 className="mt-[50px] text-4xl">Analytics</h1>
+        <h1 className="mt-[50px] text-2xl md:text-3xl lg:text-4xl">Analytics</h1>
         <nav className="flex flex-col md:space-x-5 md:flex-row border-b-2 border-rasin-black md:border-transparent justify-center md:justify-start mt-[20px]   text-sm font-medium">
           <Link
             to="/donor"
@@ -30,7 +30,7 @@ export default function Donor() {
           </Link>
 
           <Link
-            to=""
+            to="/donation"
             className="-mb-px hover:border-b-2 hover:border-transparent py-4 hover:text-folly "
           >
             Donations
@@ -53,7 +53,7 @@ export default function Donor() {
           </p>
         </div>
 
-        <div className="overflow-x-auto  border-2 border-rasin-black">
+        <div className="overflow-x-auto  border-2 border-rasin-black mb-[40px]">
           <table className="min-w-full divide-y-2 divide-rasin-black text-sm ">
             <thead className="text-left">
               <tr className="">
@@ -79,8 +79,8 @@ export default function Donor() {
             </thead>
 
             <tbody className="divide-y-2 divide-rasin-black">
-              {donors.map((donor) => (
-                <tr key={donor.id}>
+              {donors.map((donor, index) => (
+                <tr key={`donor-${index}`}>
                   <td className="whitespace-nowrap px-4 py-4 font-medium text-gray-900">
                     {donor.firstname}
                   </td>

@@ -7,6 +7,7 @@ import Profile from "./Profile";
 import Blog from "./Blog";
 import Event from "./Event";
 import Appointments from './Appointments'
+import Donations from "./Donations";
 
 
 export default function App() {
@@ -31,6 +32,9 @@ export default function App() {
         </Route>
         <Route path="/appointment" element={<PrivateRoute />}>
           <Route index element={<Appointments />} />
+        </Route>
+        <Route path="/donation" element={<PrivateRoute />}>
+          <Route index element={<Donations />} />
         </Route>
       </Routes>
     </BrowserRouter>
