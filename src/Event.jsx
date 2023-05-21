@@ -47,7 +47,7 @@ export default function Event() {
     <>
       <Nav />
       <main className="px-5 md:px-10 lg:px-[80px] mb-[40px]">
-        <h1 className="mt-[50px] text-4xl">Post</h1>
+        <h1 className="mt-[50px] text-2xl md:text-3xl lg:text-4xl">Post</h1>
         <nav className="flex flex-col md:space-x-5 md:flex-row border-b-2 border-rasin-black md:border-transparent justify-center md:justify-start mt-[20px]   text-sm font-medium">
           <Link
             to="/blog"
@@ -162,10 +162,10 @@ export default function Event() {
           <div className="col-span-6 md:col-span-3">
             <div className="space-y-5">
               <h1 className="text-base font-medium">Events</h1>
-              {latestEvent.map((event) => (
+              {latestEvent.map((event,index) => (
                 <div
                   className="space-y-2.5 border-2 border-rasin-black px-5 py-5 "
-                  key={event.id}
+                  key={`event-${index}`}
                 >
                   <p className="text-sm font-medium border-2 border-rasin-black p-1 bg-folly w-fit">
                     {event.type}

@@ -41,7 +41,7 @@ export default function Blog() {
     <>
       <Nav />
       <main className="px-5 md:px-10 lg:px-[80px] mb-[40px]">
-        <h1 className="mt-[50px] text-4xl">Post</h1>
+        <h1 className="mt-[50px] text-2xl md:text-3xl lg:text-4xl">Post</h1>
         <nav className="flex flex-col md:space-x-5 md:flex-row border-b-2 border-rasin-black md:border-transparent justify-center md:justify-start mt-[20px]   text-sm font-medium">
           <Link
             to="/blog"
@@ -152,10 +152,10 @@ export default function Blog() {
           </form>
           <div className="col-span-6 md:col-span-3 space-y-5">
             <h1 className="font-medium">Latest article</h1>
-            {feeds.map((news) => (
+            {feeds.map((news,index) => (
               <div
                 className="space-y-2.5 border-2 border-rasin-black px-5 py-5"
-                key={news.id}
+                key={`news-${index}`}
               >
                 <p className="text-sm font-medium">{news.date}</p>
                 <h1 className="text-base font-medium ">{news.heading}</h1>

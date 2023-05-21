@@ -22,7 +22,7 @@ export default function Nav() {
             <span className="text-folly">Blood</span>MED
           </h1>
           <div className="space-x-5 text-rasin-black text-[15px] hidden lg:flex items-center tracking-">
-            <Link to='/home' className="hover:text-rasin-black hover:underline hover:underline-offset-[18px] hover:decoration-[1.5px]">
+            <Link to='/home' >
               Home
             </Link> 
             <Link to="/donor">Analytics</Link>
@@ -30,11 +30,11 @@ export default function Nav() {
             
           </div>
           <div className="hidden items-center space-x-2 lg:flex">
-            <button className="border-2 bg-seasalt border-rasin-black py-1.5 px-2.5 flex items-center" onClick={profile}>
+            <button className="border-2 bg-seasalt border-rasin-black py-1.5 px-2.5 flex items-center hover:bg-seasalt" onClick={profile}>
               <i className="ri-user-line text-rasin-black"></i>
             </button>
             <button
-              className="border-2 bg-seasalt border-rasin-black py-1.5 px-2.5 flex items-center text-rasin-black hover:bg-rasin-black hover:text-seasalt"
+              className="border-2 bg-seasalt border-rasin-black py-1.5 px-2.5 flex items-center text-rasin-black hover:bg-seasalt"
               onClick={logout}
             >
               <i className="ri-logout-box-line"></i>
@@ -42,7 +42,7 @@ export default function Nav() {
           </div>
           <div className="flex items-center lg:hidden">
             <button
-              className="border-2 bg-seasalt border-rasin-black py-1.5 px-2.5 flex items-center text-rasin-black hover:bg-rasin-black hover:text-seasalt"
+              className="border-2 bg-seasalt border-rasin-black py-1.5 px-2.5 flex items-center text-rasin-black hover:bg-seasalt "
               onClick={menu}
             >
               <i className="ri-menu-3-line" id="menu"></i>
@@ -56,8 +56,8 @@ export default function Nav() {
             </Link>
             <Link to="/donor">Analytics</Link>
             <Link to='/blog'>Blog</Link>
-            <Link to='/blog'>Profile</Link>
-            <Link to='/blog'>Blog</Link>
+            <Link to='/profile'>Profile</Link>
+            <Link onClick={logout} className="text-folly">Logout</Link>
           </div>
         </nav>
       </header>

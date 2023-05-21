@@ -1,18 +1,32 @@
 import { useState } from "react";
 import { useFormik } from "formik";
-
+import { collection, addDoc } from "firebase/firestore"; 
+import { db } from "./Firebase";
 export default function TestModal() {
+  const onSubmit = async(values)=>{
+    await addDoc(collection(db, "donations"), {
+      firstname: values.firstName,
+      lastname:values.lastName,
+      bloodcomponent: values.bloodComponent,
+      quanity:values.quanity
+      
+    });
+
+  }
   const [showModal, setShowModal] = useState(false);
   const formik = useFormik({
     initialValues: {
-      email: "",
-      password: "",
+      firstName: "",
+      lastName: "",
+      bloodComponent:"",
+      quanity:"",
     },
+    onSubmit
   });
   return (
     <>
       <button
-        className="bg-folly text-rasin-black w-fit "
+        className="bg-folly text-rasin-black  "
         type="button"
         onClick={() => setShowModal(true)}
       >
@@ -42,58 +56,90 @@ export default function TestModal() {
                       <div className="space-y-5 md:w-[380px] w-full">
                         <div className="space-y-1">
                           <label
-                            htmlFor="email"
+                            htmlFor="firstName"
                             className="relative block overflow-hidden  border-rasin-black px-3 pt-3 focus-within:border-rasin-black  focus-within:ring-rasin-black"
                           >
                             <input
-                              type="email"
-                              id="email"
-                              placeholder="Email"
+                              type="text"
+                              id="firstName"
+                              placeholder="FirstName"
                               className="peer h-8 w-full border-none bg-transparent text-base p-0 placeholder-transparent font-light focus:border-transparent focus:outline-none focus:ring-0 "
-                              value={formik.values.email}
+                              value={formik.values.firstName}
                               onChange={formik.handleChange}
                               onBlur={formik.handleBlur}
                             />
                             <span className="absolute left-3 top-3 -translate-y-1/2 text-sm text-rasin-black transition-all peer-placeholder-shown:top-1/2 peer-placeholder- shown:text-sm peer-focus:top-3 peer-focus:text-xs">
-                              Email
+                              First name
                             </span>
                           </label>
-                          <p
-                            className="text-munshell text-xs"
-                            id="error-email"
-                          ></p>
+                          
                         </div>
                         <div className="space-y-1">
                           <label
-                            htmlFor="password"
+                            htmlFor="lastname"
                             className="relative block overflow-hidden  border-rasin-black px-3 pt-3 focus-within:border-rasin-black  focus-within:ring-rasin-black"
                           >
                             <input
-                              type="password"
-                              id="password"
-                              placeholder="Password"
+                              type="text"
+                              id="lastName"
+                              placeholder="LastName"
                               className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent font-light focus:border-transparent focus:outline-none focus:ring-0 text-base"
-                              value={formik.values.password}
+                              value={formik.values.lastName}
                               onChange={formik.handleChange}
                               onBlur={formik.handleBlur}
                             />
                             <span className="absolute left-3 top-3 -translate-y-1/2 text-sm text-rasin-black transition-all peer-placeholder-shown:top-1/2 peer-placeholder- shown:text-sm peer-focus:top-3 peer-focus:text-xs">
-                              Password
+                              Last name
                             </span>
                           </label>
-                          <p
-                            className="text-munshell text-xs"
-                            id="error-password"
-                          ></p>
                         </div>
-                      </div>
-                      <button
+                        <div className="space-y-1">
+                          <label
+                            htmlFor="bloodComponent"
+                            className="relative block overflow-hidden  border-rasin-black px-3 pt-3 focus-within:border-rasin-black  focus-within:ring-rasin-black"
+                          >
+                            <input
+                              type="text"
+                              id="bloodComponent"
+                              placeholder="bloodComponent"
+                              className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent font-light focus:border-transparent focus:outline-none focus:ring-0 text-base"
+                              value={formik.values.bloodComponent}
+                              onChange={formik.handleChange}
+                              onBlur={formik.handleBlur}
+                            />
+                            <span className="absolute left-3 top-3 -translate-y-1/2 text-sm text-rasin-black transition-all peer-placeholder-shown:top-1/2 peer-placeholder- shown:text-sm peer-focus:top-3 peer-focus:text-xs">
+                              Blood component
+                            </span>
+                          </label>
+                        </div>
+                        <div className="space-y-1">
+                          <label
+                            htmlFor="quanity"
+                            className="relative block overflow-hidden  border-rasin-black px-3 pt-3 focus-within:border-rasin-black  focus-within:ring-rasin-black"
+                          >
+                            <input
+                              type="number"
+                              id="quanity"
+                              placeholder="Quanity"
+                              className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent font-light focus:border-transparent focus:outline-none focus:ring-0 text-base"
+                              value={formik.values.quanity}
+                              onChange={formik.handleChange}
+                              onBlur={formik.handleBlur}
+                            />
+                            <span className="absolute left-3 top-3 -translate-y-1/2 text-sm text-rasin-black transition-all peer-placeholder-shown:top-1/2 peer-placeholder- shown:text-sm peer-focus:top-3 peer-focus:text-xs">
+                              Quanity
+                            </span>
+                          </label>
+                        </div>
+                        <button
                         className="bg-folly"
                         type="submit"
                         disabled={formik.isSubmitting}
                       >
-                        Login
+                        Add donation
                       </button>
+                      </div>
+                      
                     </div>
                   </form>
                 </div>

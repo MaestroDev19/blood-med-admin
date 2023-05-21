@@ -18,7 +18,7 @@ export default function Appointments() {
     const getAppointment = async () => {
       const q = query(collection(db, "appointments"), orderBy("date", "desc"));
       const unsub = onSnapshot(q, (querySnapshot) => {
-        const apps = querySnapshot.docs.map((doc) => doc.data());
+        const apps = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
         setApp(apps);
       });
     };
@@ -52,7 +52,7 @@ export default function Appointments() {
     <>
     <Nav/>
     <main className="px-5 md:px-10 lg:px-[80px]">
-      <h1 className="mt-[50px] text-4xl">Analytics</h1>
+      <h1 className="mt-[50px] text-2xl md:text-3xl lg:text-4xl">Analytics</h1>
             <nav className="flex flex-col md:space-x-5 md:flex-row border-b-2 border-rasin-black md:border-transparent justify-center md:justify-start mt-[20px]   text-sm font-medium">
         <Link
           to="/donor"
@@ -84,7 +84,7 @@ export default function Appointments() {
           quasi quas alias et voluptatum, veritatis porro perferendis,
         </p>
       </div>
-      <div className="space-y-2.5">
+      <div className="space-y-2.5 mb-[40px]">
         <div className="">
           <form
             className="border-2 border-rasin-black py-2.5 px-4  space-x-2 flex-row items-center  flex"
@@ -119,7 +119,7 @@ export default function Appointments() {
             <thead className="text-left">
               <tr className="">
                 <th className="whitespace-nowrap px-4 py-4 font-medium text-rasin-black">
-                  Donor id
+                  Appointment ID
                 </th>
                 <th className="whitespace-nowrap px-4 py-4 font-medium text-rasin-black">
                   First name
@@ -139,7 +139,7 @@ export default function Appointments() {
               {dataToRender.map((ap, index) => (
                 <tr key={`ap-${index}`}>
                   <td className="whitespace-nowrap px-4 py-4 font-medium text-gray-900">
-                    {ap.donorID}
+                    {ap.id}
                   </td>
                   <td className="whitespace-nowrap px-4 py-4 text-rasin-black">
                     {ap.firstname}

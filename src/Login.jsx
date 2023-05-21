@@ -39,7 +39,7 @@ export default function Login() {
       <header className=" mx-auto max-w-screen  py-[25px] px-5 md:px-10 lg:px-[50px] ">
         <nav>
           <h1 className="font-medium  text-xl">
-            <span class="text-folly">Blood</span>MED
+            <span className="text-folly">Blood</span>MED
           </h1>
         </nav>
       </header>
