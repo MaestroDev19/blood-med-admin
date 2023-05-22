@@ -35,8 +35,8 @@ export default function Appointments() {
       if (searchQuery !== "") {
         const results = app.filter(
           (ap) =>
-            ap.firstname.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            ap.lastname.toLowerCase().includes(searchQuery.toLowerCase())
+            ap.donorID.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            ap.id.toLowerCase().includes(searchQuery.toLowerCase())
           // Add more search criteria based on your table structure
         );
         setSearchResults(results);
@@ -73,6 +73,12 @@ export default function Appointments() {
           className="-mx-px font-medium py-4 md:border-b-2 md:border-current text-folly "
         >
           Appointments
+        </Link>
+        <Link
+          to="/inventory"
+          className="-mb-px hover:border-b-2 hover:border-transparent py-4 hover:text-folly "
+        >
+          Inventory
         </Link>
       </nav>
       <div className="space-y-2.5 my-[40px]">
@@ -122,10 +128,7 @@ export default function Appointments() {
                   Appointment ID
                 </th>
                 <th className="whitespace-nowrap px-4 py-4 font-medium text-rasin-black">
-                  First name
-                </th>
-                <th className="whitespace-nowrap px-4 py-4 font-medium text-rasin-black">
-                  Last name
+                  Donor ID
                 </th>
                 <th className="whitespace-nowrap px-4 py-4 font-medium text-rasin-black">
                   Date
@@ -142,10 +145,7 @@ export default function Appointments() {
                     {ap.id}
                   </td>
                   <td className="whitespace-nowrap px-4 py-4 text-rasin-black">
-                    {ap.firstname}
-                  </td>
-                  <td className="whitespace-nowrap px-4 py-4 text-rasin-black">
-                    {ap.lastname}
+                    {ap.donorID}
                   </td>
                   <td className="whitespace-nowrap px-4 py-4 text-rasin-black">
                     {ap.date}

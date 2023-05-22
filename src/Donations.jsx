@@ -31,10 +31,7 @@ export default function Donations() {
       if (searchQuery !== "") {
         const results = donations.filter(
           (donation) =>
-            donation.firstname
-              .toLowerCase()
-              .includes(searchQuery.toLowerCase()) ||
-            donation.lastname
+            donation.donorID
               .toLowerCase()
               .includes(searchQuery.toLowerCase()) ||
             donation.bloodcomponent
@@ -76,6 +73,12 @@ export default function Donations() {
             className="-mb-px hover:border-b-2 hover:border-transparent py-4 hover:text-folly "
           >
             Appointments
+          </Link>
+          <Link
+            to="/inventory"
+            className="-mb-px hover:border-b-2 hover:border-transparent py-4 hover:text-folly "
+          >
+            Inventory
           </Link>
         </nav>
 
@@ -130,16 +133,16 @@ export default function Donations() {
                     Donation ID
                   </th>
                   <th className="whitespace-nowrap px-4 py-4 font-medium text-rasin-black">
-                    First name
-                  </th>
-                  <th className="whitespace-nowrap px-4 py-4 font-medium text-rasin-black">
-                    Last name
+                    Donor ID
                   </th>
                   <th className="whitespace-nowrap px-4 py-4 font-medium text-rasin-black">
                     Blood component
                   </th>
                   <th className="whitespace-nowrap px-4 py-4 font-medium text-rasin-black">
-                    Quantity
+                    Donation date
+                  </th>
+                  <th className="whitespace-nowrap px-4 py-4 font-medium text-rasin-black">
+                    Quantity(ml)
                   </th>
                 </tr>
               </thead>
@@ -151,13 +154,14 @@ export default function Donations() {
                       {donation.id}
                     </td>
                     <td className="whitespace-nowrap px-4 py-4 text-rasin-black">
-                      {donation.firstname}
+                      {donation.donorID}
                     </td>
-                    <td className="whitespace-nowrap px-4 py-4 text-rasin-black">
-                      {donation.lastname}
-                    </td>
+
                     <td className="whitespace-nowrap px-4 py-4 text-rasin-black">
                       {donation.bloodcomponent}
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-4 text-rasin-black">
+                      {donation.date}
                     </td>
                     <td className="whitespace-nowrap px-4 py-4 text-rasin-black">
                       {donation.quanity}

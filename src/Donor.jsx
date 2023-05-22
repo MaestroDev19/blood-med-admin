@@ -67,6 +67,12 @@ export default function Donor() {
           >
             Appointments
           </Link>
+          <Link
+            to="/inventory"
+            className="-mb-px hover:border-b-2 hover:border-transparent py-4 hover:text-folly "
+          >
+            Inventory
+          </Link>
         </nav>
         <div className="space-y-2.5 my-[40px]">
           <h1 className="text-xl">

@@ -5,21 +5,21 @@ import { db } from "./Firebase";
 export default function TestModal() {
   const onSubmit = async(values)=>{
     await addDoc(collection(db, "donations"), {
-      firstname: values.firstName,
-      lastname:values.lastName,
+      donorID: values.donorid,
       bloodcomponent: values.bloodComponent,
+      date:values.date,
       quanity:values.quanity
       
     });
-
+    setShowModal(false)
   }
   const [showModal, setShowModal] = useState(false);
   const formik = useFormik({
     initialValues: {
-      firstName: "",
-      lastName: "",
+      donorid: "",
       bloodComponent:"",
       quanity:"",
+      date:"",
     },
     onSubmit
   });
@@ -56,43 +56,25 @@ export default function TestModal() {
                       <div className="space-y-5 md:w-[380px] w-full">
                         <div className="space-y-1">
                           <label
-                            htmlFor="firstName"
+                            htmlFor="donorid"
                             className="relative block overflow-hidden  border-rasin-black px-3 pt-3 focus-within:border-rasin-black  focus-within:ring-rasin-black"
                           >
                             <input
                               type="text"
-                              id="firstName"
-                              placeholder="FirstName"
+                              id="donorid"
+                              placeholder="DonorID"
                               className="peer h-8 w-full border-none bg-transparent text-base p-0 placeholder-transparent font-light focus:border-transparent focus:outline-none focus:ring-0 "
-                              value={formik.values.firstName}
+                              value={formik.values.donorid}
                               onChange={formik.handleChange}
                               onBlur={formik.handleBlur}
                             />
                             <span className="absolute left-3 top-3 -translate-y-1/2 text-sm text-rasin-black transition-all peer-placeholder-shown:top-1/2 peer-placeholder- shown:text-sm peer-focus:top-3 peer-focus:text-xs">
-                              First name
+                              Donor ID
                             </span>
                           </label>
                           
                         </div>
-                        <div className="space-y-1">
-                          <label
-                            htmlFor="lastname"
-                            className="relative block overflow-hidden  border-rasin-black px-3 pt-3 focus-within:border-rasin-black  focus-within:ring-rasin-black"
-                          >
-                            <input
-                              type="text"
-                              id="lastName"
-                              placeholder="LastName"
-                              className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent font-light focus:border-transparent focus:outline-none focus:ring-0 text-base"
-                              value={formik.values.lastName}
-                              onChange={formik.handleChange}
-                              onBlur={formik.handleBlur}
-                            />
-                            <span className="absolute left-3 top-3 -translate-y-1/2 text-sm text-rasin-black transition-all peer-placeholder-shown:top-1/2 peer-placeholder- shown:text-sm peer-focus:top-3 peer-focus:text-xs">
-                              Last name
-                            </span>
-                          </label>
-                        </div>
+                        
                         <div className="space-y-1">
                           <label
                             htmlFor="bloodComponent"
@@ -109,6 +91,25 @@ export default function TestModal() {
                             />
                             <span className="absolute left-3 top-3 -translate-y-1/2 text-sm text-rasin-black transition-all peer-placeholder-shown:top-1/2 peer-placeholder- shown:text-sm peer-focus:top-3 peer-focus:text-xs">
                               Blood component
+                            </span>
+                          </label>
+                        </div>
+                        <div className="space-y-1">
+                          <label
+                            htmlFor="date"
+                            className="relative block overflow-hidden  border-rasin-black px-3 pt-3 focus-within:border-rasin-black  focus-within:ring-rasin-black"
+                          >
+                            <input
+                              type="date"
+                              id="date"
+                              placeholder="Date"
+                              className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent font-light focus:border-transparent focus:outline-none focus:ring-0 text-base"
+                              value={formik.values.date}
+                              onChange={formik.handleChange}
+                              onBlur={formik.handleBlur}
+                            />
+                            <span className="absolute left-3 top-3 -translate-y-1/2 text-sm text-rasin-black transition-all peer-placeholder-shown:top-1/2 peer-placeholder- shown:text-sm peer-focus:top-3 peer-focus:text-xs">
+                              Donation date
                             </span>
                           </label>
                         </div>
